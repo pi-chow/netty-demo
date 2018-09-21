@@ -4,6 +4,7 @@ import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.*;
 import io.netty.util.CharsetUtil;
+import io.netty.util.ReferenceCountUtil;
 
 @ChannelHandler.Sharable
 public class EchoServerHandler extends ChannelInboundHandlerAdapter {
@@ -12,8 +13,12 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
 
         ByteBuf in = (ByteBuf) msg;
-        System.out.println("Server received: " + in.toString(CharsetUtil.UTF_8));
-        ctx.write(Unpooled.copiedBuffer("我是服务器，我收到了!", CharsetUtil.UTF_8)); //接收消息写给发送者
+        try {
+            System.out.println("Server received: " + in.toString(CharsetUtil.UTF_8));
+            ctx.writeAndFlush(Unpooled.copiedBuffer("我是服务器，我收到了!", CharsetUtil.UTF_8)); //接收消息写给发送者
+        }finally {
+            ReferenceCountUtil.release(in);//显示释放资源
+        }
     }
 
     @Override

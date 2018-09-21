@@ -10,21 +10,27 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
 import java.net.InetSocketAddress;
-
+/**
+ * 简易服务器
+ *
+ * */
 public class EchoServer {
 
     private final int port;
 
-    public EchoServer() {
-        this(8080);
-    }
 
     public EchoServer(int port) {
         this.port = port;
     }
 
     public static void main(String[] args){
-        new EchoServer().start();
+        int port;
+        if(args.length > 0){
+            port = Integer.parseInt(args[0]);
+        }else {
+            port = 8080;
+        }
+        new EchoServer(port).start();
     }
 
     private void start(){
@@ -44,6 +50,7 @@ public class EchoServer {
             ChannelFuture cf = sb.bind().sync();
             System.out.println("服务开始");
             cf.channel().closeFuture().sync();
+            System.out.println("服务停止");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }finally {
