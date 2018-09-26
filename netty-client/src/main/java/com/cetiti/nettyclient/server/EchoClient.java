@@ -1,4 +1,4 @@
-package com.cetiti.nettyclient;
+package com.cetiti.nettyclient.server;
 
 import com.cetiti.nettyclient.handler.EchoClientHandler;
 import io.netty.bootstrap.Bootstrap;
@@ -29,7 +29,6 @@ public class EchoClient {
         Bootstrap b = new Bootstrap();
         b.group(group)
                 .channel(NioSocketChannel.class)
-                .remoteAddress(new InetSocketAddress(host, port))
                 .handler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     protected void initChannel(SocketChannel socketChannel) throws Exception {
@@ -38,7 +37,7 @@ public class EchoClient {
                     }
                 });
         try {
-            ChannelFuture f = b.connect().sync();
+            ChannelFuture f = b.connect(host, port).sync();
             f.channel().closeFuture().sync();
         } catch (InterruptedException e) {
             e.printStackTrace();

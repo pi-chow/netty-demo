@@ -1,6 +1,7 @@
 ## netty
 
 - NIO
+> Non-block I/O 非阻塞I/O
 - 事件驱动
 
 > 事件触发-》handler被调用-》处理

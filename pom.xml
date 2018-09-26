@@ -49,6 +49,18 @@
 			<version>4.1.6.Final</version>
 		</dependency>
 
+		<!-- marshalling -->
+		<dependency>
+			<groupId>org.jboss.marshalling</groupId>
+			<artifactId>jboss-marshalling</artifactId>
+			<version>2.0.6.Final</version>
+		</dependency>
+		<!--marshalling 提供序列化工具-->
+		<dependency>
+			<groupId>org.jboss.marshalling</groupId>
+			<artifactId>jboss-marshalling-serial</artifactId>
+			<version>2.0.6.Final</version>
+		</dependency>
 
 	</dependencies>
 

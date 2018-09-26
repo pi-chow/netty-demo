@@ -18,6 +18,14 @@
 		<relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
 	</parent>
 
+	<dependencies>
+		<dependency>
+			<groupId>com.cetiti</groupId>
+			<artifactId>netty-server</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -31,7 +39,7 @@
 					</execution>
 				</executions>
 				<configuration>
-					<mainClass>com.cetiti.nettyclient.EchoClient</mainClass>
+					<mainClass>com.cetiti.nettyclient.server.EchoClient</mainClass>
 				</configuration>
 			</plugin>
 		</plugins>

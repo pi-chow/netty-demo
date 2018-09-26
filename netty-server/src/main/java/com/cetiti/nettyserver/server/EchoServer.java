@@ -1,4 +1,4 @@
-package com.cetiti.nettyserver;
+package com.cetiti.nettyserver.server;
 
 import com.cetiti.nettyserver.handler.EchoServerHandler;
 import io.netty.bootstrap.ServerBootstrap;
